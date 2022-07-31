@@ -1,0 +1,9 @@
+.title-cards::after{
+  content: "Experiencia Laboral";
+  width: 10px;
+  border-bottom: 4px solid #ffb633;
+}
+
+.bg-tecnologies{
+  background-color: #303231 !important;
+}
