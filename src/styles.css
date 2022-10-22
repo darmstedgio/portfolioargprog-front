@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap-icons/font/bootstrap-icons.css"
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.bg-principal{
+  background-color: #2b2c2d !important;
+}
+
+body{
+  background-color: #2b2c2d !important;
+  min-height: 100vh;
+}
+
+.bg-tecnologies{
+  background-color: #303231;
+}
+
+.text-white{
+  color: #fff;
+}

@@ -1,37 +1,14 @@
-<div class="container-fluid bg-principal">
 
+<div  style="min-height: 100vh;">
   <!-- Navbar -->
-  <div class="container">
+  <div class="container-fluid">
     <app-navbar></app-navbar>
   </div>
 
-  <!-- Principal -->
-  <div class="container">
-    <app-principal></app-principal>
+  <div class="container my-5">
+    <router-outlet></router-outlet>
   </div>
+
 </div>
 
-<!-- About Me -->
-<div class="container-fluid bg-tecnologies py-5">
-  <app-aboutme></app-aboutme>
-</div>
 
-<!-- Tecnologies -->
-<div class="container-fluid bg-principal py-5">
-    <app-tecnologies></app-tecnologies>
-</div>
-
-<!-- Studies -->
-<div class="container-fluid bg-tecnologies py-5">
-  <app-studies></app-studies>
-</div>
-
-<!-- Experiences -->
-<div class="container-fluid bg-principal py-5">
-  <app-experiences></app-experiences>
-</div>
-
-<div class="container-fluid bg-dark">
-  <app-footer></app-footer>
-</div>
-<router-outlet></router-outlet>
