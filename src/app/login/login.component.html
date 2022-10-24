@@ -1,4 +1,4 @@
-<!-- <div class="login container" *ngIf="isLogged; else loggedOut">
+<div class="login container" *ngIf="isLogged; else loggedOut">
   <h2>Ya has iniciado sessión</h2>
 </div>
 
@@ -11,18 +11,18 @@
             <a routerLink="/login" class="nav-link">Iniciar Sessión</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/new" class="nav-link">Crear Cuenta</a>
+            <a href="#" class="nav-link">Crear Cuenta</a>
           </li>
         </ul>
       </div>
       <div class="card-body">
         <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
           <div class="form-floating mb-3">
-            <input [(ngModel)]="username" type="email" class="form-control" id="floatingInput" placeholder="Nombre de Usuario">
+            <input [(ngModel)]="username" name="username" type="email" class="form-control" id="floatingInput" placeholder="Nombre de Usuario">
             <label for="floatingInput">Nombre de Usuario</label>
           </div>
           <div class="form-floating">
-            <input [(ngModel)]="password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+            <input [(ngModel)]="password" name="password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
             <label for="floatingPassword">Contraseña</label>
           </div>
           <button type="submit" class="btn btn-outline-primary" [disabled]="!f.valid">Iniciar Sessión</button>
@@ -30,6 +30,6 @@
       </div>
     </div>
   </div>
-</ng-template> -->
+</ng-template>
 
 

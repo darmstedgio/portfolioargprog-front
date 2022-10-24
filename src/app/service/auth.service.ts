@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { NewUser } from "../models/new-user";
-import { UserLogin } from "../models/login-user";
-import { JwtDTO } from "../models/jwt-dto";
+import { NewUser } from "../models/NewUser";
+import { UserLogin } from "../models/UserLogin";
+import { JwtDTO } from "../models/JwtDTO";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -20,7 +20,5 @@ export class AuthService{
   public login(userLogin: UserLogin): Observable<JwtDTO> {
     return this._http.post<any>(this.authURL + 'login', userLogin);
   }
-
-
 
 }
