@@ -10,9 +10,9 @@ import { AboutmeComponent } from './aboutme/aboutme.component';
 import { StudiesComponent } from './studies/studies.component';
 import { ExperiencesComponent } from './experiences/experiences.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,13 +24,13 @@ import { HomeComponent } from './home/home.component';
     StudiesComponent,
     ExperiencesComponent,
     FooterComponent,
-    LoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
