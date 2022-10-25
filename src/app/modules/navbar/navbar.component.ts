@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ComunicationsService } from '../service/comunications.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() {
-  }
+  public show: boolean = true;
+
+  constructor(
+    private comunicationService: ComunicationsService
+  ) { }
 
   ngOnInit(): void {
+    this.comunicationService.binario.subscribe(
+      variable => {
+        this.show = variable;
+      }
+    );
   }
 }

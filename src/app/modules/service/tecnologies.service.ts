@@ -10,7 +10,7 @@ export class TecnologiesService{
   public URL: string;
 
   constructor(private _http: HttpClient){
-    this.URL = 'http://localhost:8080/index/tecnologies';
+    this.URL = 'http://localhost:8081/index/tecnologies';
   }
 
   public getTecnologies(): Observable<any>{

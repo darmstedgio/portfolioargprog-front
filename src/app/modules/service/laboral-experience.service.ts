@@ -10,7 +10,7 @@ export class LaboralExperienceService{
   public URL: string;
 
   constructor(private _http: HttpClient){
-    this.URL = 'http://localhost:8080/index/laboralexperiences';
+    this.URL = 'http://localhost:8081/index/laboralexperiences';
   }
 
   public getLaboralExperience(): Observable<any>{
