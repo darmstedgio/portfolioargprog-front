@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { UserLogin } from '../models/UserLogin';
+import { UserLogin } from '../../core/models/UserLogin';
 import { TokenService } from '../service/token.service';
 @Component({
   selector: 'app-login',
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
-    private router: Router,
   )
   {
 
@@ -38,7 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    console.log(window.sessionStorage);
     this.userLogin = new UserLogin(this.username, this.password);
     this.authService.login(this.userLogin).subscribe(
       data => {
@@ -58,6 +55,13 @@ export class LoginComponent implements OnInit {
         console.log(this.errMsj);
       }
     );
+  }
+
+  logOut(){
+    this.tokenService.logOut();
+    // window.sessionStorage.clear();
+    this.isLogged = false;
+    this.isLoginFail = true;
   }
 
 }

@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PrincipalComponent } from './principal/principal.component';
-import { TecnologiesComponent } from './tecnologies/tecnologies.component';
-import { AboutmeComponent } from './aboutme/aboutme.component';
-import { StudiesComponent } from './studies/studies.component';
-import { ExperiencesComponent } from './experiences/experiences.component';
-import { FooterComponent } from './footer/footer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './modules/navbar/navbar.component';
+import { PrincipalComponent } from './modules/principal/principal.component';
+import { TecnologiesComponent } from './modules/tecnologies/tecnologies.component';
+import { AboutmeComponent } from './modules/aboutme/aboutme.component';
+import { StudiesComponent } from './modules/studies/studies.component';
+import { ExperiencesComponent } from './modules/experiences/experiences.component';
+import { FooterComponent } from './modules/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './modules/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './modules/login/login.component';
 
 @NgModule({
   declarations: [

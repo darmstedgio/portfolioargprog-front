@@ -1,5 +1,9 @@
 <div class="login container" *ngIf="isLogged; else loggedOut">
-  <h2>Ya has iniciado sessión</h2>
+  <h2>¡Bienvenido!</h2>
+  <p>Ya puedes comenzar a editar tu portafolio web</p>
+  <button class="btn btn-outline-warning" (click)="logOut()">
+    Cerrar Sesión
+  </button>
 </div>
 
 <ng-template #loggedOut>
@@ -25,8 +29,11 @@
             <input [(ngModel)]="password" name="password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
             <label for="floatingPassword">Contraseña</label>
           </div>
-          <button type="submit" class="btn btn-outline-primary" [disabled]="!f.valid">Iniciar Sessión</button>
+          <button type="submit" class="btn btn-outline-primary my-3" [disabled]="!f.valid">Iniciar Sessión</button>
         </form>
+        <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
+          Se producjo un error: {{ errMsj }}
+        </div>
       </div>
     </div>
   </div>

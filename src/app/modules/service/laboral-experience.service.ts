@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Study } from "../models/Study";
+import { LaboralExperience } from "../../core/models/LaboralExperience";
 import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudiesService{
+export class LaboralExperienceService{
   public URL: string;
 
   constructor(private _http: HttpClient){
-    this.URL = 'http://localhost:8080/index/studies';
+    this.URL = 'http://localhost:8080/index/laboralexperiences';
   }
 
-  public getStudies(): Observable<any>{
+  public getLaboralExperience(): Observable<any>{
     return this._http.get<any>(this.URL);
   }
 

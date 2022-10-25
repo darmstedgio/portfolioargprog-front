@@ -2,10 +2,10 @@
 
   <div class="row">
     <div class="row my-5">
-      <h2 class="text-center title-cards text-white"></h2>
+      <h2 class="text-center title-cards"></h2>
     </div>
     <div *ngIf="!laboralExperiences" >
-      <p style="color: #fff;">Cargando...</p>
+      <p>Cargando...</p>
     </div>
     <div class="row" *ngFor="let experencie of laboralExperiences">
       <div class="card mb-3 ">
@@ -17,9 +17,9 @@
           </div>
           <div class="col-8" >
             <div class="card-body" style="overflow: auto; height: 9rem;">
-              <h5 class="card-title text-white">{{ experencie.name }}</h5>
-              <p class="card-text text-white" style="tab-size: .1rem;">{{ experencie.description }}</p>
-              <p class="card-text text-white" style="tab-size: .1rem;">Fecha de Inicio: {{ experencie.start_activity | date:"dd/MM/yyyy" }}, Fecha de Finalización: {{ experencie.end_activity | date:"dd/MM/yyyy" }}</p>
+              <h5 class="card-title">{{ experencie.name }}</h5>
+              <p class="card-text" style="tab-size: .1rem;">{{ experencie.description }}</p>
+              <p class="card-text" style="tab-size: .1rem;">Fecha de Inicio: {{ experencie.start_activity | date:"dd/MM/yyyy" }}, Fecha de Finalización: {{ experencie.end_activity | date:"dd/MM/yyyy" }}</p>
             </div>
           </div>
         </div>

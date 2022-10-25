@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Tecnology } from "../models/Tecnology";
+import { Tecnology } from "../../core/models/Tecnology";
 import { Observable } from "rxjs";
 
 @Injectable({

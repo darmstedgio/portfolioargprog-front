@@ -2,24 +2,23 @@
 
   <div class="row">
     <div class="row my-5">
-      <h2 class="text-center title-cards text-white"></h2>
+      <h2 class="text-center title-cards"></h2>
     </div>
-    <div *ngIf="!studies" >
-      <p style="color: #fff;">Cargando...</p>
+    <div *ngIf="!tecnologies" >
+      <p>Cargando...</p>
     </div>
-    <div class="row" *ngFor="let study of studies">
+    <div class="row" *ngFor="let tecnology of tecnologies">
       <div class="card mb-3 ">
         <div class="row bg-dark">
           <div class="col-4 text-center p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" style="width: 10vw; max-width: 90px; color: #fff" fill="currentColor" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" style="width: 10vw; max-width: 90px;" fill="currentColor" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
                 <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0h-13Zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5ZM12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0ZM1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1ZM1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25Z"/>
               </svg>
           </div>
           <div class="col-8" >
             <div class="card-body" style="overflow: auto; height: 9rem;">
-              <h5 class="card-title text-white">{{ study.name }}</h5>
-              <p class="card-text text-white" style="tab-size: .1rem;">{{ study.description }}</p>
-              <p class="card-text text-white" style="tab-size: .1rem;">Fecha de Inicio: {{ study.start_activity | date:"dd/MM/yyyy" }}, Fecha de Finalización: {{ study.end_activity | date:"dd/MM/yyyy" }}</p>
+              <h5 class="card-title">{{ tecnology.name }}</h5>
+              <p class="card-text" style="tab-size: .1rem;">{{ tecnology.description }}</p>
             </div>
           </div>
         </div>

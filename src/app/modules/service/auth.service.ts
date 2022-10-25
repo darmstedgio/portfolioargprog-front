@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { NewUser } from "../models/NewUser";
-import { UserLogin } from "../models/UserLogin";
-import { JwtDTO } from "../models/JwtDTO";
+import { NewUser } from "../../core/models/NewUser";
+import { UserLogin } from "../../core/models/UserLogin";
+import { JwtDTO } from "../../core/models/JwtDTO";
 import { Observable } from "rxjs";
 
 @Injectable({
