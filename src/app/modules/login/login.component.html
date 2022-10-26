@@ -25,7 +25,7 @@
           <button type="submit" class="btn btn-outline-primary my-3" [disabled]="!f.valid">Iniciar Sessión</button>
         </form>
         <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
-          Se produjo un error... {{ errMsj }}
+          {{ errMsj }}
         </div>
       </div>
     </div>

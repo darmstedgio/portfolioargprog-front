@@ -10,7 +10,7 @@ export class StudiesService{
   public URL: string;
 
   constructor(private _http: HttpClient){
-    this.URL = 'http://localhost:8081/index/studies';
+    this.URL = 'http://localhost:8081/api/index/studies';
   }
 
   public getStudies(): Observable<any>{

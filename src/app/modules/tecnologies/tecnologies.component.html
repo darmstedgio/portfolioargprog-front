@@ -8,6 +8,8 @@
       <p>Cargando...</p>
     </div>
     <div class="row" *ngFor="let tecnology of tecnologies">
+
+      <!-- Tecnology -->
       <div class="card mb-3 ">
         <div class="row bg-dark">
           <div class="col-4 text-center p-3">
@@ -17,12 +19,13 @@
           </div>
           <div class="col-8" >
             <div class="card-body" style="overflow: auto; height: 9rem;">
-              <h5 class="card-title">{{ tecnology.name }}</h5>
+              <h5 class="card-title" contenteditable="true">{{ tecnology.name }}</h5>
               <p class="card-text" style="tab-size: .1rem;">{{ tecnology.description }}</p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './modules/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './modules/login/login.component';
+import { interceptorProvider } from './core/interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { LoginComponent } from './modules/login/login.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
