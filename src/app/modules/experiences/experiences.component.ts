@@ -20,7 +20,6 @@ export class ExperiencesComponent implements OnInit {
     this._laboral_experience.getLaboralExperience().subscribe(
       result => {
         this.laboralExperiences = result;
-        console.log(<any> this.laboralExperiences);
       }
     );
   }

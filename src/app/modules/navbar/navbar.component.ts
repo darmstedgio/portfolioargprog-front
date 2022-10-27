@@ -11,13 +11,13 @@ export class NavbarComponent implements OnInit {
   public show: boolean = true;
 
   constructor(
-    private comunicationService: ComunicationsService
+    private _comunicationService: ComunicationsService
   ) { }
 
   ngOnInit(): void {
-    this.comunicationService.binario.subscribe(
+    this._comunicationService.binario.subscribe(
       variable => {
-        this.show = variable;
+        this.show = !variable;
       }
     );
   }

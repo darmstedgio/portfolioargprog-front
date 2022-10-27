@@ -23,7 +23,6 @@ export class StudiesComponent implements OnInit {
     this._studiesService.getStudies().subscribe(
       result => {
         this.studies = result;
-        console.log(<any> this.studies);
       }
     );
   }

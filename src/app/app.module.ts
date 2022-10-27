@@ -9,7 +9,7 @@ import { AboutmeComponent } from './modules/aboutme/aboutme.component';
 import { StudiesComponent } from './modules/studies/studies.component';
 import { ExperiencesComponent } from './modules/experiences/experiences.component';
 import { FooterComponent } from './modules/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './modules/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './modules/login/login.component';
@@ -32,6 +32,7 @@ import { interceptorProvider } from './core/interceptors/auth-interceptor.servic
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [interceptorProvider],
