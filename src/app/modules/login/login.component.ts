@@ -21,32 +21,32 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private comunicationService: ComunicationsService
+    private _tokenService: TokenService,
+    private _authService: AuthService,
+    private _comunicationService: ComunicationsService
   ) { }
 
   ngOnInit(): void {
-      if(this.tokenService.getToken()){
+      if(this._tokenService.getToken()){
         this.isLogged = true;
         this.isLoginFail = false;
-        this.roles = this.tokenService.getAuthorities();
+        this.roles = this._tokenService.getAuthorities();
       }
   }
 
   onLogin(): void {
     this.userLogin = new UserLogin(this.username, this.password);
-    this.authService.login(this.userLogin).subscribe(
+    this._authService.login(this.userLogin).subscribe(
       data => {
         this.isLogged = true;
         this.isLoginFail = false;
 
-        this.tokenService.setToken(data.token);
-        this.tokenService.setUserName(data.username);
-        this.tokenService.setAuthorities(data.authorities);
+        this._tokenService.setToken(data.token);
+        this._tokenService.setUserName(data.username);
+        this._tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
         // Emit para ocultar login del navbar
-        this.comunicationService.binario.emit(true);
+        this._comunicationService.binario.emit(true);
       }
       ,
       err => {
@@ -56,17 +56,17 @@ export class LoginComponent implements OnInit {
         console.log(this.errMsj);
 
         // Emit para ocultar login del navbar
-        this.comunicationService.binario.emit(false);
+        this._comunicationService.binario.emit(false);
       }
     );
   }
 
   logOut(){
-    this.tokenService.logOut();
+    this._tokenService.logOut();
     this.isLogged = false;
     this.isLoginFail = true;
     // Emit para ocultar login del navbar
-    this.comunicationService.binario.emit(false);
+    this._comunicationService.binario.emit(false);
   }
 
 }

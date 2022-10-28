@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Tecnology } from "../../core/models/Tecnology";
 import { Observable } from "rxjs";
 import { TokenService } from "./token.service";
@@ -10,32 +10,34 @@ import { ComunicationsService } from "./comunications.service";
   providedIn: 'root'
 })
 export class TecnologiesService{
-  public indexURL: string = 'http://localhost:8081/api/index/tecnologies';
-  public storeURL: string = 'http://localhost:8081/api/store/tecnology';
-  public updateURL: string = 'http://localhost:8081/api/update/tecnology';
-  public findURL: string = 'http://localhost:8081/api/find/tecnology/';
-  public deleteURL: string = 'http://localhost:8081/api/delete/tecnology/';
+  public URL: string = 'http://localhost:8081/api/';
+
+  public indexURL: string = this.URL + 'index/tecnologies';
+  public storeURL: string = this.URL + 'store/tecnology';
+  public updateURL: string = this.URL + 'update/tecnology';
+  public findURL: string = this.URL + 'find/tecnology/';
+  public deleteURL: string = this.URL + 'delete/tecnology/';
 
   constructor(
     private _http: HttpClient,
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private comunicationService: ComunicationsService
-    ) { }
+    private _tokenService: TokenService,
+    private _authService: AuthService,
+    private _comunicationService: ComunicationsService
+  ) { }
 
   public getTecnologies(): Observable<any>{
     return this._http.get<any>(this.indexURL);
   }
 
-  // addTecnology(tecnology: Tecnology): Observable<Tecnology> {
-
-  //   return this._http.post<Tecnology>(this.storeURL, tecnology, httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError('addHero', tecnology))
-  //     );
-  // }
+  public updateTecnology(tecnology: Tecnology): void {
+    console.log('sending...' + tecnology);
+    this._http.put(this.updateURL, tecnology).subscribe(data => {
+      return data;
+    });
+  }
 
 
 }
+
 
 

@@ -7,21 +7,42 @@
     <div *ngIf="!tecnologies" >
       <p>Cargando...</p>
     </div>
-    <div class="row" *ngFor="let tecnology of tecnologies">
-
+    <div class="row" *ngFor="let tecnology of tecnologies; let i = index">
       <!-- Tecnology -->
-      <div class="card mb-3 " *ngIf="isLogged; else form">
-        <div class="row bg-dark">
+      <div class="card mb-3 ">
+        <div class="row bg-dark position-relative">
+          <!-- Button trigger modal -->
+          <div class="row" *ngIf="editable">
+            <div class="offset-11 col-md-1 text-end row">
+              <div class="col-md-6">
+                <button (click)="goEdit(i)" type="button" class="btn btn-sm bg-success bg-gradient py-0 px-1 m-1 position-absolute " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button (click)="goDelete(i)" type="button" class="btn btn-sm bg-danger bg-gradient py-0 px-1 m-1 position-absolute ">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+
+            </div>
+          </div>
           <div class="col-4 text-center p-3">
               <svg xmlns="http://www.w3.org/2000/svg" style="width: 10vw; max-width: 90px;" fill="currentColor" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
                 <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0h-13Zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5ZM12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0ZM1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1ZM1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25Z"/>
               </svg>
           </div>
           <div class="col-8" >
-            <div class="card-body" style="overflow: auto; height: 9rem;">
-
-            <h5 class="card-title" contenteditable="true">{{ tecnology.name }} <button *ngIf="editable" class="btn btn-sm bg-success bg-gradient mx-2 py-1"><i class="bi bi-pencil"></i></button></h5>
-              <p class="card-text" style="tab-size: .1rem;">{{ tecnology.description }}<button *ngIf="editable" class="btn btn-sm bg-success bg-gradient mx-2 py-1"><i class="bi bi-pencil"></i></button></p>
+            <div class="card-body" style="overflow: auto; height: 12rem;">
+              <!-- Name -->
+              <h5 class="card-title">
+                {{ tecnology.name }}
+              </h5>
+              <!-- Description -->
+              <p class="card-text" style="tab-size: .1rem;">{{ tecnology.description }}</p>
+              <!-- Level -->
+              <span>Nivel: {{ tecnology.level }}</span>
             </div>
           </div>
         </div>
@@ -30,6 +51,39 @@
   </div>
 </div>
 
-<ng-template #form>
-  <form action="">Para Editar...</form>
-</ng-template>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Tecnología</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" [formGroup]="form">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Título</label>
+            <input formControlName="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+            <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nivel</label>
+            <input formControlName="level" class="form-control" id="exampleFormControlInput1" placeholder="">
+          </div>
+        </form>
+        <br>
+        <!-- {{ form.value | json }} -->
+      </div>
+      <div class="modal-footer">
+        <button (click)="updateForm()" type="button" class="btn btn-primary">Modificar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
