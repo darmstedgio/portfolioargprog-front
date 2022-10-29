@@ -1,3 +1,4 @@
+@import "../../../assets/css/percentaje-chart.css";
 .title-cards::after{
   content: "Tecnologías";
   width: 10px;
@@ -6,4 +7,20 @@
 
 .bg-tecnologies{
   background-color: #303231 !important;
+}
+
+.style-card{
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.shadow-element{
+  box-shadow: 2px 2px 10px #000;
+}
+
+.style-card:hover{
+  transform: scale(1.02);
+  transition: 1s;
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tecnology } from 'src/app/core/models/Tecnology';
 import { ComunicationsService } from '../service/comunications.service';
 import { TecnologiesService } from '../service/tecnologies.service';
@@ -21,11 +21,14 @@ export class TecnologiesComponent implements OnInit {
   public description: string;
   public level: string;
 
+  // String: create or update
+  public is_create: boolean;
+
   form = new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
-    level: new FormControl(null),
+    level: new FormControl(null, [Validators.max(100)]),
   });
 
   constructor(
@@ -38,6 +41,7 @@ export class TecnologiesComponent implements OnInit {
     this.description = '';
     this.level = '';
     this.tecnology = {id: null, name: null, level: null, description: null};
+    this.is_create = true;
   }
 
   ngOnInit(): void {
@@ -58,7 +62,7 @@ export class TecnologiesComponent implements OnInit {
     );
   }
 
-  goEdit(i: number): void{
+  goEdit(i: number, j: boolean): void{
     // Set old values to form
     const id = this.form.get('id') as FormControl;
     id.setValue(this.tecnologies[i].id);
@@ -71,6 +75,22 @@ export class TecnologiesComponent implements OnInit {
 
     const level = this.form.get('level') as FormControl;
     level.setValue(this.tecnologies[i].level);
+
+    this.is_create = j;
+  }
+
+  clearForm(): void{
+    const id = this.form.get('id') as FormControl;
+    id.setValue('');
+
+    const name = this.form.get('name') as FormControl;
+    name.setValue('');
+
+    const description = this.form.get('description') as FormControl;
+    description.setValue('');
+
+    const level = this.form.get('level') as FormControl;
+    level.setValue('');
   }
 
   updateForm(): void{
@@ -80,10 +100,26 @@ export class TecnologiesComponent implements OnInit {
       level: this.form.value.level,
       description: this.form.value.description
     };
+
+    const id = this.form.get('id') as FormControl;
+
     this._tecnologiesService.updateTecnology(this.tecnology);
   }
 
   goDelete(i: number): void{
-
+    this._tecnologiesService.deleteTecnology(i);
   }
+
+  createForm(): void{
+
+    this.tecnology = {
+      id: this.form.value.id,
+      name: this.form.value.name,
+      level: this.form.value.level,
+      description: this.form.value.description
+    };
+
+    this._tecnologiesService.updateTecnology(this.tecnology);
+  }
+
 }
