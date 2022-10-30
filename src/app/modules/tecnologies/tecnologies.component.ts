@@ -126,6 +126,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
 
     this._tecnologiesService.updateTecnology(this.tecnology);
     this.formModal.nativeElement.click();
+
+    // investigar rxjs
+    window.location.reload();
   }
 
   goDelete(i: number, name: string): void{
@@ -133,6 +136,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     if(confirm == true){
       this._tecnologiesService.deleteTecnology(i);
     }
+
+    // investigar rxjs
+    window.location.reload();
   }
 
   createForm(): void{
@@ -146,6 +152,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     };
     this.formModal.nativeElement.click(); //close modal
     this._tecnologiesService.updateTecnology(this.tecnology);
+
+    // investigar rxjs
+    window.location.reload();
   }
 
 }
