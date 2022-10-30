@@ -81,7 +81,6 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
         console.log(this.experiences)
       }
     );
-
   }
 
   goEdit(i: number, j: boolean): void{

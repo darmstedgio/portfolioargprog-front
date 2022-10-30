@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="col-4 text-center p-3 d-flex flex-column justify-content-center">
-              <i class="{{ tecnology.icon_class }}"></i>
+              <i class="{{ 'text-bg-white fa-4x pl-3' + ' ' + tecnology.icon_class }}"></i>
             </div>
             <div class="col-8" >
               <div class="card-body mt-2 mb-0" style="overflow: auto; height: 12rem;">
@@ -50,7 +50,6 @@
                 <!-- Description -->
                 <p class="card-text" style="tab-size: .1rem;">{{ tecnology.description }}</p>
                 <!-- Level -->
-
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" [style.width.%]="(tecnology.level)" [attr.aria-valuenow]="tecnology.level" aria-valuemin="0" aria-valuemax="100">{{ tecnology.level }} / 100</div>
                 </div>

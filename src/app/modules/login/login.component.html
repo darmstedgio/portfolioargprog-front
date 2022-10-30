@@ -8,9 +8,10 @@
 
 <ng-template #loggedOut>
   <div class="container d-flex justify-content-center">
-    <div class="card">
+    <div class="card bg-dark">
       <div class="card-header">
-        <p class="my-2 text-dark">Login</p>
+        <span class="my-2 float-start">Login</span>
+        <span class="my-2 float-end"><i class="fa-solid fa-right-to-bracket"></i></span>
       </div>
       <div class="card-body">
         <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
@@ -22,7 +23,7 @@
             <input [(ngModel)]="password" name="password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
             <label for="floatingPassword">Contraseña</label>
           </div>
-          <button type="submit" class="btn btn-outline-primary my-3" [disabled]="!f.valid">Iniciar Sessión</button>
+          <button type="submit" class="btn btn-success my-3" [disabled]="!f.valid">Iniciar Sessión</button>
         </form>
         <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
           {{ errMsj }}

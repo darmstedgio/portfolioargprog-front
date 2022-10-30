@@ -1,3 +1,5 @@
+@import "../../../assets/css/percentaje-chart.css";
+
 .b-radius-100{
   border-radius: 100%;
   height: 150px;
@@ -38,3 +40,20 @@
   max-height: 220px;
   overflow-y: auto;
 }
+
+.tecnology-about{
+  cursor: pointer;
+}
+
+/*
+Element scroll bar personalized
+
+<div class="card text-bg-dark mb-3 mx-2 custom-scrollbar" style="max-width: 10rem; max-height: 10rem; overflow-y: scroll;">
+  <div class="card-header "><h5 class="card-title">LARAVEL</h5></div>
+  <div class="card-body">
+
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+*/
