@@ -1,9 +1,26 @@
+/* @import "../../../assets/css/percentaje-chart.css"; */
 .title-cards::after{
-  content: "Experiencia Laboral";
+  content: "Laboral Experiences";
   width: 10px;
   border-bottom: 4px solid #ffb633;
 }
 
-.bg-tecnologies{
-  background-color: #303231 !important;
+.bg-experiences{
+  background-color: #273947;
+}
+
+.style-card-experience{
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.shadow-element-experience{
+  box-shadow: 2px 2px 10px #000;
+}
+
+.style-card:hover{
+  transform: scale(1.02);
+  transition: 1s;
 }
