@@ -23,8 +23,8 @@
         <div class="card mb-3 m-3 bg-dark border-0">
           <div class="row bg-dark style-card shadow-element">
             <!-- Button trigger modal -->
-            <div class="row" *ngIf="editable">
-              <div class="offset-10 col-md-2 text-end row position-relative mt-1">
+            <div class="row mt-2" *ngIf="editable">
+              <div class="offset-10 col-md-2 text-end row position-relative">
                 <div class="col-md-6 position-absolute float-start">
                   <button (click)="goEdit(i, false)" type="button" class="btn btn-sm bg-success bg-gradient py-0 px-1 m-1" data-bs-toggle="modal" data-bs-target="#FormModal">
                     <i class="fa-solid fa-pencil"></i>
@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="col-4 text-center p-3 d-flex flex-column justify-content-center">
-              <i class="text-bg-white fa-brands fa-4x fa-node pl-3"></i>
+              <i class="{{ tecnology.icon_class }}"></i>
             </div>
             <div class="col-8" >
               <div class="card-body mt-2 mb-0" style="overflow: auto; height: 12rem;">
@@ -60,14 +60,6 @@
       </div>
     </div>
 
-
-  <!-- <i class="  text-bg-white fa-brands fa-6x fa-bootstrap"></i>
-  <i class="  text-bg-white fa-brands fa-6x fa-angular"></i>
-  <i class="  text-bg-white fa-brands fa-6x fa-html5"></i>
-  <i class="  text-bg-white fa-brands fa-6x fa-css3-alt"></i>
-  <i class="  text-bg-white fa-brands fa-6x fa-css3"></i> -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="FormModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -79,17 +71,31 @@
       </div>
       <div class="modal-body">
         <form action="" [formGroup]="form">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Título</label>
-            <input formControlName="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+          <!-- Name -->
+          <div class="form-floating mb-3">
+            <input formControlName="name" type="text" class="form-control" id="name" placeholder="">
+            <label for="name">Título</label>
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-            <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder=""></textarea>
+          <!-- Description -->
+          <div class="form-floating mb-3">
+            <textarea formControlName="description" class="form-control" placeholder="" id="description"></textarea>
+            <label for="description">Descripción</label>
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nivel</label>
-            <input formControlName="level" type="number" min="0" max="100" class="form-control" id="exampleFormControlInput1" placeholder="">
+          <!-- Level -->
+          <div class="form-floating mb-3">
+            <input formControlName="level" type="number" min="0" max="100" class="form-control" id="level" placeholder="">
+            <label for="level">Nivel</label>
+          </div>
+
+          <!-- Icons -->
+          <div class="form-floating">
+            <select formControlName="icon_class" class="form-select" id="icons" aria-label="Iconos">
+              <option selected disabled>Iconos</option>
+              <ng-container *ngFor="let icon of icons; index as i">
+                <option  value="{{ icon.class }}" [attr.selected]="icon.class == icon_class_selected" >{{ i }}. {{ icon.name | titlecase }}</option>
+              </ng-container>
+            </select>
+            <label for="icons">Iconos</label>
           </div>
         </form>
         <br>

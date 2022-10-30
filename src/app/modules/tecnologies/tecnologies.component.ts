@@ -5,6 +5,8 @@ import { ComunicationsService } from '../service/comunications.service';
 import { TecnologiesService } from '../service/tecnologies.service';
 import { TokenService } from '../service/token.service';
 
+import * as myIcons from '../../core/structures/icons';
+
 @Component({
   selector: 'app-tecnologies',
   templateUrl: './tecnologies.component.html',
@@ -12,6 +14,7 @@ import { TokenService } from '../service/token.service';
   providers: [TecnologiesService]
 })
 export class TecnologiesComponent implements OnInit {
+
   public tecnologies: any;
   public tecnology: Tecnology;
   public isLogged: boolean = false;
@@ -24,11 +27,16 @@ export class TecnologiesComponent implements OnInit {
   // String: create or update
   public is_create: boolean;
 
+  // icons from core structures
+  public icons: Array<any> = myIcons.icons;
+  public icon_class_selected: any;
+
   form = new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
     level: new FormControl(null, [Validators.max(100)]),
+    icon_class: new FormControl('')
   });
 
   constructor(
@@ -40,8 +48,9 @@ export class TecnologiesComponent implements OnInit {
     this.name = '';
     this.description = '';
     this.level = '';
-    this.tecnology = {id: null, name: null, level: null, description: null};
+    this.tecnology = {id: null, name: null, level: null, description: null, icon_class: null};
     this.is_create = true;
+    this.icon_class_selected = '';
   }
 
   ngOnInit(): void {
@@ -76,6 +85,11 @@ export class TecnologiesComponent implements OnInit {
     const level = this.form.get('level') as FormControl;
     level.setValue(this.tecnologies[i].level);
 
+    const icon_class = this.form.get('icon_class') as FormControl;
+    icon_class.setValue(this.tecnologies[i].icon_class);
+
+    this.icon_class_selected = this.form.value.icon_class;
+
     this.is_create = j;
   }
 
@@ -98,7 +112,8 @@ export class TecnologiesComponent implements OnInit {
       id: this.form.value.id,
       name: this.form.value.name,
       level: this.form.value.level,
-      description: this.form.value.description
+      description: this.form.value.description,
+      icon_class: this.form.value.icon_class
     };
 
     const id = this.form.get('id') as FormControl;
@@ -116,7 +131,8 @@ export class TecnologiesComponent implements OnInit {
       id: this.form.value.id,
       name: this.form.value.name,
       level: this.form.value.level,
-      description: this.form.value.description
+      description: this.form.value.description,
+      icon_class: this.form.value.icon_class
     };
 
     this._tecnologiesService.updateTecnology(this.tecnology);

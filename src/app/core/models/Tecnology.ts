@@ -4,5 +4,6 @@ export class Tecnology{
     public name: string | null | undefined,
     public level: string | null | undefined,
     public description: string | null | undefined,
+    public icon_class: string | null | undefined
   ){ }
 }
