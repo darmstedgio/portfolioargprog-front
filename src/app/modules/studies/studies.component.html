@@ -1,29 +1,143 @@
-<div class="container">
+<div class="containe">
 
   <div class="row">
     <div class="row my-5">
-      <h2 class="text-center title-cards"></h2>
+      <h2 class="text-center title-cards">
+
+      </h2>
     </div>
     <div *ngIf="!studies" >
       <p>Cargando...</p>
     </div>
-    <div class="row" *ngFor="let study of studies">
-      <div class="card mb-3 ">
-        <div class="row bg-dark">
-          <div class="col-4 text-center p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" style="width: 10vw; max-width: 90px; color: #fff" fill="currentColor" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
-                <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0h-13Zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5ZM12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0ZM1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1ZM1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25Z"/>
-              </svg>
-          </div>
-          <div class="col-8" >
-            <div class="card-body" style="overflow: auto; height: 9rem;">
-              <h5 class="card-title">{{ study.name }}</h5>
-              <p class="card-text" style="tab-size: .1rem;">{{ study.description }}</p>
-              <p class="card-text" style="tab-size: .1rem;">Fecha de Inicio: {{ study.start_activity | date:"dd/MM/yyyy" }}, Fecha de Finalización: {{ study.end_activity | date:"dd/MM/yyyy" }}</p>
+    <div class="row" *ngIf="editable">
+      <div class="offset-md-11 col-md-2">
+        <button (click)="clearForm()" type="button" class="btn bg-success bg-gradient  text-white shadow" data-bs-toggle="modal" data-bs-target="#FormModalStudy" title="Agregar">
+          <i class="fa-solid fa-plus"></i>
+          AGREGAR
+        </button>
+      </div>
+    </div>
+
+    <div class="row gx-2">
+      <div class="col-md-6" *ngFor="let study of studies; let i = index">
+        <!-- Study -->
+        <div class="card mb-3 m-3 border-0">
+          <div class="row bg-studies style-card-study shadow-element-study">
+            <!-- Button trigger modal -->
+            <div class="row mt-2" *ngIf="editable">
+              <div class="offset-10 col-md-2 text-end row position-relative">
+                <div class="col-md-6 position-absolute float-start">
+                  <button (click)="goEdit(i, false)" type="button" class="btn btn-sm bg-success bg-gradient py-0 px-1 m-1" data-bs-toggle="modal" data-bs-target="#FormModalStudy" title="Editar">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                </div>
+                <div class="col-md-6 position-absolute offset-md-5">
+                  <button (click)="goDelete(study.id, study.name)" type="button" class="btn btn-sm bg-danger bg-gradient py-0 px-1 m-1" title="Eliminar">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 text-center p-3 d-flex flex-column justify-content-center">
+              <i class="{{ study.icon_class }}"></i>
+            </div>
+            <div class="col-8" >
+              <div class="card-body mt-2 mb-0" style="overflow: auto; height: 12rem;">
+                <!-- Name -->
+                <h5 class="card-title">
+                  {{ study.name }}
+                </h5>
+                <div class="row">
+                  <small>
+                    <i>Inicio: {{ study.start_activity | date : 'shortDate' }}
+
+                      <span *ngIf="study.keep_going != true else actualidad"> {{ study.end_activity != null ? "- Finalización:" + (study.end_activity | date: 'shortDate') : ''}}</span>
+                      <ng-template #actualidad>
+                        - En curso...
+                      </ng-template>
+
+                    </i>
+                  </small>
+                </div>
+                <!-- Institution -->
+                <p class="card-text my-1" style="tab-size: .1rem; font-size: 1.3rem;">{{ study.institution | uppercase }}</p>
+                <!-- Description -->
+                <p class="card-text" style="tab-size: .1rem;">{{ study.description }}</p>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="FormModalStudy" tabindex="-1" aria-labelledby="FormModalStudyLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h1 *ngIf="!is_create" class="modal-title fs-5" id="FormModalStudyLabel">Editar Estudios</h1>
+        <h1 *ngIf="is_create" class="modal-title fs-5" id="FormModalStudyLabel">Crear Estudios</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" [formGroup]="form">
+          <!-- Name -->
+          <div class="form-floating mb-3">
+            <input formControlName="name" type="text" class="form-control" id="name" placeholder="">
+            <label for="name">Título</label>
+          </div>
+          <!-- Description -->
+          <div class="form-floating mb-3">
+            <textarea formControlName="description" class="form-control" placeholder="" id="description"></textarea>
+            <label for="description">Descripción</label>
+          </div>
+          <!-- Start Activity -->
+          <div class="form-floating mb-3">
+            <input formControlName="start_activity" type="date" class="form-control" id="start_activity" placeholder="">
+            <label for="start_activity">Fecha de Inicio</label>
+          </div>
+          <!-- End Activity -->
+          <div class="row mb-3">
+            <div class="col-md-8">
+              <div class="form-floating">
+                <input formControlName="end_activity" type="date" class="form-control" id="end_activity" placeholder="">
+                <label for="end_activity">Fecha de Finalización</label>
+              </div>
+            </div>
+
+            <div class="col-md-4 m-auto">
+              <div class="form-check form-switch">
+                <label class="form-check-label text-white" for="flexSwitchCheckChecked">En curso </label>
+                <input formControlName="keep_going" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="switch()">
+              </div>
+            </div>
+          </div>
+          <!-- Institution -->
+          <div class="form-floating mb-3">
+            <input formControlName="institution" type="text" class="form-control" id="institution" placeholder="">
+            <label for="institution">Institución</label>
+          </div>
+          <!-- Icons -->
+          <div class="form-floating">
+            <select formControlName="icon_class" class="form-select" id="icons" aria-label="Iconos">
+              <option selected disabled>Iconos</option>
+              <ng-container *ngFor="let icon of icons; index as i">
+                <option  value="{{ icon.class }}" [attr.selected]="icon.class == icon_class_selected" >{{ i }}. {{ icon.name | titlecase }}</option>
+              </ng-container>
+            </select>
+            <label for="icons">Iconos</label>
+          </div>
+        </form>
+        <br>
+        <!-- {{ form.value | json }} -->
+      </div>
+      <div class="modal-footer">
+      <button type="button" #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button *ngIf="!is_create" (click)="updateForm()" onclick="this.modal('hide')" type="button" class="btn btn-primary">Modificar</button>
+        <button *ngIf="is_create" (click)="createForm()" type="button" class="btn btn-primary">Crear</button>
+      </div>
+    </div>
   </div>
 </div>
+

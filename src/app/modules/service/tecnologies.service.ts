@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Tecnology } from "../../core/models/Tecnology";
 import { Observable } from "rxjs";
-import { TokenService } from "./token.service";
-import { AuthService } from "./auth.service";
-import { ComunicationsService } from "./comunications.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +17,6 @@ export class TecnologiesService{
 
   constructor(
     private _http: HttpClient,
-    private _tokenService: TokenService,
-    private _authService: AuthService,
-    private _comunicationService: ComunicationsService
   ) { }
 
   // Index

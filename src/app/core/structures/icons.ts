@@ -109,4 +109,9 @@ export const icons = [
     'name': 'briefcase',
     'class': 'text-bg-white fa-4x pl-3 fa-solid fa-briefcase'
   },
+  {
+    'name': 'tools',
+    'class': 'text-bg-white fa-4x pl-3 fa-solid fa-screwdriver-wrench'
+  },
+
 ];
