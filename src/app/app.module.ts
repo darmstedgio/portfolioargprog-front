@@ -26,7 +26,7 @@ import { interceptorProvider } from './core/interceptors/auth-interceptor.servic
     ExperiencesComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -51,10 +51,11 @@ export class TecnologiesComponent implements OnInit {
     this.tecnology = {id: null, name: null, level: null, description: null, icon_class: null};
     this.is_create = true;
     this.icon_class_selected = '';
+    this.loadTecnologies();
+
   }
 
   ngOnInit(): void {
-    this.loadTecnologies();
 
     if(this._tokenService.getToken()){
       this.isLogged = true;
@@ -69,6 +70,7 @@ export class TecnologiesComponent implements OnInit {
         this.tecnologies = result;
       }
     );
+
   }
 
   goEdit(i: number, j: boolean): void{
@@ -121,8 +123,11 @@ export class TecnologiesComponent implements OnInit {
     this._tecnologiesService.updateTecnology(this.tecnology);
   }
 
-  goDelete(i: number): void{
-    this._tecnologiesService.deleteTecnology(i);
+  goDelete(i: number, name: string): void{
+    var confirm = window.confirm("¿Está seguro que desea borrar " + name + "?");
+    if(confirm == true){
+      this._tecnologiesService.deleteTecnology(i);
+    }
   }
 
   createForm(): void{
