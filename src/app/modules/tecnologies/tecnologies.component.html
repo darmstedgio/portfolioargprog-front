@@ -103,6 +103,7 @@
         <!-- {{ form.value | json }} -->
       </div>
       <div class="modal-footer">
+      <button type="button" #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button *ngIf="!is_create" (click)="updateForm()" onclick="this.modal('hide')" type="button" class="btn btn-primary">Modificar</button>
         <button *ngIf="is_create" (click)="createForm()" type="button" class="btn btn-primary">Crear</button>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tecnology } from 'src/app/core/models/Tecnology';
 import { ComunicationsService } from '../service/comunications.service';
@@ -13,7 +13,12 @@ import * as myIcons from '../../core/structures/icons';
   styleUrls: ['./tecnologies.component.css'],
   providers: [TecnologiesService]
 })
-export class TecnologiesComponent implements OnInit {
+export class TecnologiesComponent implements OnInit, AfterContentInit {
+
+  @ViewChild('closeModal') formModal: ElementRef<any>;
+
+  ngAfterContentInit(){
+  }
 
   public tecnologies: any;
   public tecnology: Tecnology;
@@ -41,7 +46,6 @@ export class TecnologiesComponent implements OnInit {
 
   constructor(
     private _tecnologiesService: TecnologiesService,
-    private _comunicationService: ComunicationsService,
     private _tokenService: TokenService,
   )
   {
@@ -121,6 +125,7 @@ export class TecnologiesComponent implements OnInit {
     const id = this.form.get('id') as FormControl;
 
     this._tecnologiesService.updateTecnology(this.tecnology);
+    this.formModal.nativeElement.click();
   }
 
   goDelete(i: number, name: string): void{
@@ -139,7 +144,7 @@ export class TecnologiesComponent implements OnInit {
       description: this.form.value.description,
       icon_class: this.form.value.icon_class
     };
-
+    this.formModal.nativeElement.click(); //close modal
     this._tecnologiesService.updateTecnology(this.tecnology);
   }
 
