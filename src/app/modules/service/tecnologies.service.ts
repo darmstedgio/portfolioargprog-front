@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class TecnologiesService{
-  public URL: string = 'http://localhost:8081/api/';
+  public URL: string = 'https://frozen-citadel-63653.herokuapp.com/api/';
 
   public indexURL: string = this.URL + 'index/tecnologies';
   public storeURL: string = this.URL + 'store/tecnology';

@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class ExperienceService{
-  public URL: string = 'http://localhost:8081/api/';
+  public URL: string = 'https://frozen-citadel-63653.herokuapp.com/api/';
 
   public indexURL: string = this.URL + 'index/laboralexperiences';
   public storeURL: string = this.URL + 'store/laboralexperience';
