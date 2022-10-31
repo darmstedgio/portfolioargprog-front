@@ -1,30 +1,57 @@
 <div class="container-fluid">
   <div class="row p-4 d-flex justify-content-center align-items-center">
     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-        <div class="m-3 text-center ">
+        <div class="m-3 text-center col">
           <img class="img-fluid b-radius-100 d-none d-md-block m-auto" src="/assets/ar-con-abstract.png" alt="">
-          <div class="m-3 text-center">
-            <h5>Breve descripción</h5>
-            <p class="m-0">
-              <i>¡Hola! Me alegra que hayas ingresado a mi portafolio web.</i>
-            </p>
-            <p class="m-0">
-              <i>
-                Y por esto, me presento. Mi nombre es Ariel, tengo 29 años y estoy finalizando mi curso de Desarrollador Full Stack Jr.
-                brindado por Argentina Programa.
-              </i>
-            </p>
-            <p class="mt-0">
-              <i>
-                Desde que he comenzado la programación, me ha fascinado la cantidad de ramas para escoger,
-                la cantidad de tecnologías, y las soluciones que se pueden dar gracias a esto para satisfacer
-                las demandas del sector productivo.
-              </i>
-            </p>
-          </div>
 
+          <div class="offset-10 col-md-2 text-end row position-relative my-3">
+            <div *ngIf="!editing && editable" class=" position-absolute">
+              <button (click)="goEdit()" type="button" class="btn btn-sm bg-success bg-gradient py-0 px-1 m-1" >
+                <i class="fa-solid fa-pencil"></i>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="!editing" class="m-3 text-center">
+            <h5>{{ aboutme.name }}</h5>
+            <i>
+              <!-- ¡Hola! Me alegra que hayas ingresado a mi portafolio web.
+              Y por esto, me presento. Mi nombre es Ariel, tengo 29 años y estoy finalizando mi curso de Desarrollador Full Stack Jr.
+              brindado por Argentina Programa.
+              Desde que he comenzado la programación, me ha fascinado la cantidad de ramas para escoger,
+              la cantidad de tecnologías, y las soluciones que se pueden dar gracias a esto para satisfacer
+              las demandas del sector productivo. -->
+              {{ aboutme.description }}
+            </i>
+          </div>
+          <div class="row position-relative mb-5">
+            <!-- Editing -->
+            <div *ngIf="editing" class="position-absolute float-end">
+              <button (click)="goUpdate()" type="button" class="btn btn-sm bg-primary bg-gradient py-0 px-1 m-1 float-end" >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button (click)="clearForm()" type="button" class="btn btn-sm bg-danger bg-gradient py-0 px-1 m-1 float-end" >
+                <i class="fa-solid fa-cancel"></i>
+              </button>
+            </div>
+          </div>
+          <div class="m-3 text-center ">
+            <form  *ngIf="editing" action="" [formGroup]="formAbout">
+              <!-- Name -->
+              <div class="form-floating mb-3">
+                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Breve Descripción">
+                <label for="name">Título</label>
+              </div>
+              <!-- Description -->
+              <div class="form-floating mb-3">
+                <textarea formControlName="description" rows="40" class="form-control" placeholder="Descripción" id="description"></textarea>
+                <label for="description">Descripción</label>
+              </div>
+            </form>
+          </div>
         </div>
     </div>
+
+    <!-- Iconos -->
     <div class="col-md-6 d-flex flex-row">
       <div class="row">
         <div *ngFor="let tecnology of tecnologies; let i = index;" class="col-md-4 col-6">
@@ -53,27 +80,20 @@
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
-      <!-- <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Descripción de {{ tecnologies[index].name }}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div> -->
       <div class="modal-body">
         <div class="row">
-          <i class="{{ 'text-center text-bg-white fa-7x pl-3' + ' ' + tecnologies[index].icon_class }}"></i>
+          <i class="{{ 'text-center text-bg-white fa-7x pl-3' + ' ' + tecnology.icon_class }}"></i>
         </div>
         <!-- Name -->
-        <h2 class="card-title">{{ tecnologies[index].name }}</h2>
+        <h2 class="card-title">{{ tecnology.name }}</h2>
         <!-- Description -->
-        <p class="card-text">{{ tecnologies[index].description }}</p>
+        <p class="card-text">{{ tecnology.description }}</p>
         <!-- Level -->
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width.%]="(tecnologies[index].level)" [attr.aria-valuenow]="tecnologies[index].level" aria-valuemin="0" aria-valuemax="100">{{ tecnologies[index].level }} / 100</div>
+          <div class="progress-bar" role="progressbar" [style.width.%]="(tecnology.level)" [attr.aria-valuenow]="tecnology.level" aria-valuemin="0" aria-valuemax="100">{{ tecnology.level }} / 100</div>
         </div>
       </div>
-      <!-- <div class="modal-footer border-top-0"> -->
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      <!-- </div> -->
     </div>
   </div>
 </div>
