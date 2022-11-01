@@ -93,7 +93,11 @@ export const icons = [
   },
   {
     'name': 'spring-boot',
-    'class': 'fa-solid fa-b'
+    'class': 'fa-solid fa-s'
+  },
+  {
+    'name': 'adobe',
+    'class': 'fa-solid fa-a'
   },
   {
     'name': 'java',

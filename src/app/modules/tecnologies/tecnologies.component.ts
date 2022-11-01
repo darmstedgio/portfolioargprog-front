@@ -128,7 +128,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     this.formModal.nativeElement.click();
 
     // investigar rxjs
+    setTimeout(()=>{
     window.location.reload();
+}, 1500);
   }
 
   goDelete(i: number, name: string): void{
@@ -138,7 +140,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     }
 
     // investigar rxjs
+    setTimeout(()=>{
     window.location.reload();
+}, 1500);
   }
 
   createForm(): void{
@@ -154,7 +158,9 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     this._tecnologiesService.updateTecnology(this.tecnology);
 
     // investigar rxjs
+    setTimeout(()=>{
     window.location.reload();
+}, 1500);
   }
 
 }
