@@ -78,8 +78,7 @@ export class StudiesComponent implements OnInit, AfterContentInit {
     this._studiesService.getStudies().subscribe(
       result => {
         this.studies = result;
-        console.log(this.studies)
-
+        // console.log(this.studies)
       }
     );
 
