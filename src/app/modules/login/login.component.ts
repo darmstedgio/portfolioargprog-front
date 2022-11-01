@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   isLogged = false;
   isLoginFail = false;
   userLogin: any;
-  public username: string = 'ariel';
-  public password: string = 'aMunoz1';
+  public username: string = '';
+  public password: string = '';
   public errMsj: string = '';
 
   roles: string[] = [];
