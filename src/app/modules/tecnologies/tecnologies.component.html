@@ -25,13 +25,13 @@
           <div class="row bg-dark style-card shadow-element">
             <!-- Button trigger modal -->
             <div class="row mt-2" *ngIf="editable">
-              <div class="offset-10 col-md-2 text-end row position-relative">
+              <div class="offset-0 offset-md-10 col-md-2 text-end row position-relative">
                 <div class="col-md-6 position-absolute float-start">
                   <button (click)="goEdit(i, false)" type="button" class="btn btn-sm bg-success bg-gradient py-0 px-1 m-1" data-bs-toggle="modal" data-bs-target="#FormModal" title="Editar">
                     <i class="fa-solid fa-pencil"></i>
                   </button>
                 </div>
-                <div class="col-md-6 position-absolute offset-md-5">
+                <div class="col-md-6 position-absolute offset-1 offset-md-5">
                   <button (click)="goDelete(tecnology.id, tecnology.name)" type="button" class="btn btn-sm bg-danger bg-gradient py-0 px-1 m-1" title="Eliminar">
                     <i class="fa-solid fa-trash"></i>
                   </button>
