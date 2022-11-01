@@ -78,7 +78,7 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
     this._experienceService.getExperiences().subscribe(
       result => {
         this.experiences = result;
-        console.log(this.experiences)
+        // console.log(this.experiences)
       }
     );
   }

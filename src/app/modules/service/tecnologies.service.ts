@@ -34,7 +34,7 @@ export class TecnologiesService{
   // Update
   public updateTecnology(tecnology: Tecnology): any {
     this._http.put(this.updateURL, tecnology).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       return data;
     });
   }

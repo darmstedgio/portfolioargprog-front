@@ -13,7 +13,7 @@
   border: 2px solid #fff;
   border-radius: 1rem;
   transition: 1s;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .shadow-element-experience{
