@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ComunicationsService } from '../service/comunications.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class NavbarComponent implements OnInit {
 
   public show: boolean = true;
 
+  @ViewChild('closeSidebar') sidebar: ElementRef<any>;
+
   constructor(
     private _comunicationService: ComunicationsService
   ) { }
@@ -20,5 +22,9 @@ export class NavbarComponent implements OnInit {
         this.show = !variable;
       }
     );
+  }
+
+  close(): void{
+    this.sidebar.nativeElement.click();
   }
 }
