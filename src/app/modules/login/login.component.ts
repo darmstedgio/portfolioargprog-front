@@ -13,12 +13,9 @@ export class LoginComponent implements OnInit {
   isLogged = false;
   isLoginFail = false;
   userLogin: any;
-  public username: string = '';
-  public password: string = '';
+  public username: string = 'amunoz@mail';
+  public password: string = 'aMunoz1';
   public errMsj: string = '';
-
-  roles: string[] = [];
-
 
   constructor(
     private _tokenService: TokenService,
@@ -30,7 +27,6 @@ export class LoginComponent implements OnInit {
       if(this._tokenService.getToken()){
         this.isLogged = true;
         this.isLoginFail = false;
-        this.roles = this._tokenService.getAuthorities();
       }
   }
 
@@ -41,10 +37,8 @@ export class LoginComponent implements OnInit {
         this.isLogged = true;
         this.isLoginFail = false;
 
-        this._tokenService.setToken(data.token);
-        this._tokenService.setUserName(data.username);
-        this._tokenService.setAuthorities(data.authorities);
-        this.roles = data.authorities;
+        this._tokenService.setToken(data.access_token);
+        this._tokenService.setUserName(data.user_email);
         // Emit para ocultar login del navbar
         this._comunicationService.binario.emit(true);
       }

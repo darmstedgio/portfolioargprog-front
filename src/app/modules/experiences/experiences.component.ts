@@ -150,11 +150,6 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
 
     this._experienceService.updateExperience(this.experience);
     this.formModal.nativeElement.click();
-
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   goDelete(i: number, name: string): void{
@@ -163,10 +158,6 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
       this._experienceService.deleteExperience(i);
     }
 
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   createForm(): void{
@@ -183,11 +174,6 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
     };
     this.formModal.nativeElement.click(); //close modal
     this._experienceService.updateExperience(this.experience);
-
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   switch(){

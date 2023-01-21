@@ -7,13 +7,13 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class TecnologiesService{
-  public URL: string = 'https://portfolioweb.com.devel/api/';
+  public URL: string = 'http://portfolioweb.com.devel/api/';
 
   public indexURL: string = this.URL + 'index/tecnologies';
-  public storeURL: string = this.URL + 'store/tecnology';
-  public updateURL: string = this.URL + 'update/tecnology';
-  public findURL: string = this.URL + 'find/tecnology/';
-  public deleteURL: string = this.URL + 'delete/tecnology/';
+  public storeURL: string = this.URL + 'store/tecnologies';
+  public updateURL: string = this.URL + 'update/tecnologies';
+  public findURL: string = this.URL + 'find/tecnologies/';
+  public deleteURL: string = this.URL + 'delete/tecnologies/';
 
   constructor(
     private _http: HttpClient,

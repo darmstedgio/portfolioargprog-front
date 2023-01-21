@@ -1,8 +1,7 @@
 export class JwtDTO {
   constructor(
-              public token: string,
+              public access_token: string,
               public type: string,
-              public username: string,
-              public authorities: Array<string>
+              public user_email: string,
               ){}
 }

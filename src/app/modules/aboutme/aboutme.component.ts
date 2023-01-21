@@ -99,9 +99,6 @@ export class AboutmeComponent implements OnInit {
     };
 
     this._aboutMesService.updateAboutMe(this.aboutme);
-
-    // investigar rxjs
-    // window.location.reload();
   }
 
   clearForm(){

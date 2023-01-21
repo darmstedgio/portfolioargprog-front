@@ -152,10 +152,6 @@ export class StudiesComponent implements OnInit, AfterContentInit {
     this._studiesService.updateStudy(this.study);
     this.formModal.nativeElement.click();
 
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   goDelete(i: number, name: string): void{
@@ -163,11 +159,6 @@ export class StudiesComponent implements OnInit, AfterContentInit {
     if(confirm == true){
       this._studiesService.deleteStudy(i);
     }
-
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   createForm(): void{
@@ -185,10 +176,6 @@ export class StudiesComponent implements OnInit, AfterContentInit {
     this.formModal.nativeElement.click(); //close modal
     this._studiesService.updateStudy(this.study);
 
-    // investigar rxjs
-    setTimeout(()=>{
-    window.location.reload();
-}, 1500);
   }
 
   switch(){

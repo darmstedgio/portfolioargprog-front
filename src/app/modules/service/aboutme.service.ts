@@ -7,9 +7,9 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class AboutMeService{
-  public URL: string = 'https://portfolioweb.com.devel/api/';
+  public URL: string = 'http://portfolioweb.com.devel/api/';
 
-  public indexURL: string = this.URL + 'index/aboutmes';
+  public indexURL: string = this.URL + 'index/aboutme';
   public storeURL: string = this.URL + 'store/aboutme';
   public updateURL: string = this.URL + 'update/aboutme';
   public findURL: string = this.URL + 'find/aboutme/';

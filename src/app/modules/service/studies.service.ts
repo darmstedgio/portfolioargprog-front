@@ -8,13 +8,13 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class StudiesService{
-  public URL: string = 'https://portfolioweb.com.devel/api/';
+  public URL: string = 'http://portfolioweb.com.devel/api/';
 
   public indexURL: string = this.URL + 'index/studies';
-  public storeURL: string = this.URL + 'store/study';
-  public updateURL: string = this.URL + 'update/study';
-  public findURL: string = this.URL + 'find/study/';
-  public deleteURL: string = this.URL + 'delete/study/';
+  public storeURL: string = this.URL + 'store/studies';
+  public updateURL: string = this.URL + 'update/studies';
+  public findURL: string = this.URL + 'find/studies/';
+  public deleteURL: string = this.URL + 'delete/studies/';
 
   constructor(
     private _http: HttpClient,

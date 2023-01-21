@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class ExperienceService{
-  public URL: string = 'https://portfolioweb.com.devel/api/';
+  public URL: string = 'http://portfolioweb.com.devel/api/';
 
   public indexURL: string = this.URL + 'index/laboralexperiences';
   public storeURL: string = this.URL + 'store/laboralexperience';
