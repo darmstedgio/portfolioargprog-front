@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class AuthService{
-  authURL = 'https://frozen-citadel-63653.herokuapp.com/api/auth/';
+  authURL = 'https://portfolioweb.com.devel/api/auth/';
 
   constructor(private _http: HttpClient){ }
 
