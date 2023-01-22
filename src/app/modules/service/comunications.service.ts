@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,5 +9,8 @@ export class ComunicationsService {
   constructor() {
     this.binario = new EventEmitter<boolean>();
   }
+
+  @Output()
+  dispatchReload: EventEmitter<any> = new EventEmitter();
 
 }

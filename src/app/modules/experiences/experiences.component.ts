@@ -6,6 +6,7 @@ import { TokenService } from '../service/token.service';
 import * as myIcons from '../../core/structures/icons';
 import { Experience } from 'src/app/core/models/Experience';
 import { ExperienceService } from '../service/experiences.service';
+import { AboutMe } from 'src/app/core/models/AboutMe';
 
 @Component({
   selector: 'app-experiences',
@@ -75,12 +76,11 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
 
   loadExperience(){
     this.experiences = false;
-    this._experienceService.getExperiences().subscribe(
-      result => {
-        this.experiences = result;
-        // console.log(this.experiences)
-      }
-    );
+    this._experienceService.getExperiences().subscribe({
+      next: (data) => { this.experiences = data; },
+      error: (data) => { console.error(data); },
+      complete: ()=> { }
+    });
   }
 
   goEdit(i: number, j: boolean): void{
@@ -148,14 +148,33 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
 
     const id = this.formExperience.get('id') as FormControl;
 
-    this._experienceService.updateExperience(this.experience);
-    this.formModal.nativeElement.click();
+    this._experienceService.updateExperience(this.experience).subscribe({ //Update
+      next: (data) => {
+        this.experiences.forEach((element: any, index: number) => {
+          if(element.id == data.id){
+            this.experiences[index] = data;
+          }
+        });
+      },
+      error: (data) => { console.error(data); },
+      complete: ()=> {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
   }
 
   goDelete(i: number, name: string): void{
     var confirm = window.confirm("¿Está seguro que desea borrar " + name + "?");
     if(confirm == true){
-      this._experienceService.deleteExperience(i);
+      this._experienceService.deleteExperience(i).subscribe({ //Delete
+        next: (data) => {
+          this.experiences.forEach((element: any, index: number) => {
+            if(element.id == data.id)
+              this.experiences.splice(index, 1);
+          });
+        },
+        error: (data) => { console.error(data); },
+      });
     }
 
   }
@@ -173,7 +192,16 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
       icon_class: this.formExperience.value.icon_class
     };
     this.formModal.nativeElement.click(); //close modal
-    this._experienceService.updateExperience(this.experience);
+    this._experienceService.createExperience(this.experience).subscribe({ //Create
+      next: (data) => {
+        this.experiences.push(data);
+        console.log(data)
+      },
+      error: (data) => { console.error(data); },
+      complete: ()=> {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
   }
 
   switch(){
@@ -181,3 +209,37 @@ export class ExperiencesComponent implements OnInit, AfterContentInit {
     end_activity.setValue(null);
   }
 }
+
+/*
+this._studiesService.updateStudy(this.study).subscribe({ //Update
+  next: (data) => {
+    this.studies.forEach((element: any, index: number) => {
+      if(element.id == data.id){
+        this.studies[index] = data;
+      }
+    });
+  },
+  error: (data) => { console.error(data); },
+  complete: ()=> {
+    this.formModal.nativeElement.click(); //close modal
+  }
+});
+this._studiesService.deleteStudy(i).subscribe({ //Delete
+    next: (data) => {
+      this.studies.forEach((element: any, index: number) => {
+        if(element.id == data.id)
+          this.studies.splice(index, 1);
+      });
+    },
+    error: (data) => { console.error(data); },
+  });
+this._studiesService.createStudy(this.study).subscribe({ //Create
+  next: (data) => {
+    this.studies.push(data);
+  },
+  error: (data) => { console.error(data); },
+  complete: ()=> {
+    this.formModal.nativeElement.click(); //close modal
+  }
+});
+*/

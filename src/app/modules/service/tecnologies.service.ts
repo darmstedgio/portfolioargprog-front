@@ -25,25 +25,18 @@ export class TecnologiesService{
   }
 
   // Store
-  public createTecnology(tecnology: Tecnology): any {
-    this._http.post(this.storeURL, tecnology).subscribe(data => {
-      return data;
-    });
+  public createTecnology(tecnology: Tecnology): Observable<any> {
+    return this._http.post(this.storeURL, tecnology);
   }
 
   // Update
-  public updateTecnology(tecnology: Tecnology): any {
-    this._http.put(this.updateURL, tecnology).subscribe(data => {
-      // console.log(data);
-      return data;
-    });
+  public updateTecnology(tecnology: Tecnology): Observable<any> {
+    return this._http.put(this.updateURL, tecnology);
   }
 
   // Delete
-  public deleteTecnology(i: number): any {
-    this._http.delete(this.deleteURL + i).subscribe(data => {
-      console.log(data);
-    });
+  public deleteTecnology(i: number): Observable<any> {
+    return this._http.delete(this.deleteURL + i);
   }
 
 

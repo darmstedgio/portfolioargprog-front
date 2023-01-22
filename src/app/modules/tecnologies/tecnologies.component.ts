@@ -1,11 +1,11 @@
-import { AfterContentInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tecnology } from 'src/app/core/models/Tecnology';
-import { ComunicationsService } from '../service/comunications.service';
 import { TecnologiesService } from '../service/tecnologies.service';
 import { TokenService } from '../service/token.service';
 
 import * as myIcons from '../../core/structures/icons';
+import { ComunicationsService } from '../service/comunications.service';
 
 @Component({
   selector: 'app-tecnologies',
@@ -47,6 +47,7 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
   constructor(
     private _tecnologiesService: TecnologiesService,
     private _tokenService: TokenService,
+    private _comunicationService: ComunicationsService
   )
   {
     this.name = '';
@@ -56,7 +57,6 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
     this.is_create = true;
     this.icon_class_selected = '';
     this.loadTecnologies();
-
   }
 
   ngOnInit(): void {
@@ -68,12 +68,13 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
   }
 
   loadTecnologies(){
-    this.tecnologies = false;
-    this._tecnologiesService.getTecnologies().subscribe(
-      result => {
-        this.tecnologies = result;
-      }
-    );
+    this.tecnologies = [];
+    this._tecnologiesService.getTecnologies().subscribe({
+      next: (data) => {
+        this.tecnologies = data;
+      },
+      error: (data) => { console.error(data); },
+    });
 
   }
 
@@ -124,15 +125,39 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
 
     const id = this.form.get('id') as FormControl;
 
-    this._tecnologiesService.updateTecnology(this.tecnology);
-    this.formModal.nativeElement.click();
+    this._tecnologiesService.updateTecnology(this.tecnology).subscribe({ //Update
+      next: (data) => {
+        this.tecnologies.forEach((element: any, index: number) => {
+          if(element.id == data.id){
+            this.tecnologies[index] = data;
+          }
+        });
 
+        //Emito hacia about component
+        this._comunicationService.dispatchReload.emit();
+      },
+      error: (data) => { console.error(data); },
+      complete: ()=> {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
   }
 
   goDelete(i: number, name: string): void{
     var confirm = window.confirm("¿Está seguro que desea borrar " + name + "?");
     if(confirm == true){
-      this._tecnologiesService.deleteTecnology(i);
+      this._tecnologiesService.deleteTecnology(i).subscribe({ //Delete
+        next: (data) => {
+          this.tecnologies.forEach((element: any, index: number) => {
+            if(element.id == data.id)
+              this.tecnologies.splice(index, 1);
+          });
+
+          //Emito hacia about component
+          this._comunicationService.dispatchReload.emit();
+        },
+        error: (data) => { console.error(data); },
+      });
     }
   }
 
@@ -145,8 +170,17 @@ export class TecnologiesComponent implements OnInit, AfterContentInit {
       description: this.form.value.description,
       icon_class: this.form.value.icon_class
     };
-    this.formModal.nativeElement.click(); //close modal
-    this._tecnologiesService.updateTecnology(this.tecnology);
-  }
+    this._tecnologiesService.createTecnology(this.tecnology).subscribe({ //Create
+      next: (data) => {
+        this.tecnologies.push(data);
 
+        //Emito hacia about component
+        this._comunicationService.dispatchReload.emit();
+      },
+      error: (data) => { console.error(data); },
+      complete: () => {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
+  }
 }

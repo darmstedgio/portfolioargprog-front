@@ -26,19 +26,13 @@ export class AboutMeService{
 
   // // Store
   // public createAboutMe(aboutme: AboutMe): any {
-  //   this._http.post(this.storeURL, aboutme).subscribe(data => {
-  //     return data;
-  //   });
+  //   this._http.post(this.storeURL, aboutme);
   // }
 
   // Update
-  public updateAboutMe(aboutme: AboutMe): any {
-    this._http.put(this.updateURL, aboutme).subscribe(data => {
-      console.log(data);
-      return data;
-    });
+  public updateAboutMe(aboutme: AboutMe): Observable<any> {
+    return this._http.put(this.updateURL, aboutme);
   }
-
 }
 
 

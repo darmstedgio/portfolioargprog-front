@@ -6,6 +6,7 @@ import { Study } from 'src/app/core/models/Study';
 import { TokenService } from '../service/token.service';
 
 import * as myIcons from '../../core/structures/icons';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-studies',
@@ -78,10 +79,8 @@ export class StudiesComponent implements OnInit, AfterContentInit {
     this._studiesService.getStudies().subscribe(
       result => {
         this.studies = result;
-        // console.log(this.studies)
       }
     );
-
   }
 
   goEdit(i: number, j: boolean): void{
@@ -149,20 +148,37 @@ export class StudiesComponent implements OnInit, AfterContentInit {
 
     const id = this.form.get('id') as FormControl;
 
-    this._studiesService.updateStudy(this.study);
-    this.formModal.nativeElement.click();
-
+    this._studiesService.updateStudy(this.study).subscribe({ //Update
+      next: (data) => {
+        this.studies.forEach((element: any, index: number) => {
+          if(element.id == data.id){
+            this.studies[index] = data;
+          }
+        });
+      },
+      error: (data) => { console.error(data); },
+      complete: ()=> {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
   }
 
   goDelete(i: number, name: string): void{
     var confirm = window.confirm("¿Está seguro que desea borrar " + name + "?");
     if(confirm == true){
-      this._studiesService.deleteStudy(i);
+      this._studiesService.deleteStudy(i).subscribe({ //Delete
+        next: (data) => {
+          this.studies.forEach((element: any, index: number) => {
+            if(element.id == data.id)
+              this.studies.splice(index, 1);
+          });
+        },
+        error: (data) => { console.error(data); },
+      });
     }
   }
 
   createForm(): void{
-
     this.study = {
       id: this.form.value.id,
       name: this.form.value.name,
@@ -173,9 +189,16 @@ export class StudiesComponent implements OnInit, AfterContentInit {
       keep_going: this.form.value.keep_going,
       icon_class: this.form.value.icon_class
     };
-    this.formModal.nativeElement.click(); //close modal
-    this._studiesService.updateStudy(this.study);
 
+    this._studiesService.createStudy(this.study).subscribe({ //Create
+      next: (data) => {
+        this.studies.push(data);
+      },
+      error: (data) => { console.error(data); },
+      complete: ()=> {
+        this.formModal.nativeElement.click(); //close modal
+      }
+    });
   }
 
   switch(){

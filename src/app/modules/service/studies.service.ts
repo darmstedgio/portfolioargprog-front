@@ -26,27 +26,19 @@ export class StudiesService{
   }
 
   // Store
-  public createStudy(study: Study): any {
-    this._http.post(this.storeURL, study).subscribe(data => {
-      return data;
-    });
+  public createStudy(study: Study): Observable<any> {
+    return this._http.post(this.storeURL, study);
   }
 
   // Update
-  public updateStudy(study: Study): any {
-    this._http.put(this.updateURL, study).subscribe(data => {
-      return data;
-    });
+  public updateStudy(study: Study): Observable<any> {
+    return this._http.put(this.updateURL, study);
   }
 
   // Delete
-  public deleteStudy(i: number): any {
-    this._http.delete(this.deleteURL + i).subscribe(data => {
-      console.log(data);
-    });
+  public deleteStudy(i: number): Observable<any> {
+    return this._http.delete(this.deleteURL + i);
   }
-
-
 }
 
 

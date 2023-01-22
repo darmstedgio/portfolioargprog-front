@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Experience } from "../../core/models/Experience";
 import { Observable } from "rxjs";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +10,10 @@ export class ExperienceService{
   public URL: string = 'http://portfolioweb.com.devel/api/';
 
   public indexURL: string = this.URL + 'index/laboralexperiences';
-  public storeURL: string = this.URL + 'store/laboralexperience';
-  public updateURL: string = this.URL + 'update/laboralexperience';
-  public findURL: string = this.URL + 'find/laboralexperience/';
-  public deleteURL: string = this.URL + 'delete/laboralexperience/';
+  public storeURL: string = this.URL + 'store/laboralexperiences';
+  public updateURL: string = this.URL + 'update/laboralexperiences';
+  public findURL: string = this.URL + 'find/laboralexperiences/';
+  public deleteURL: string = this.URL + 'delete/laboralexperiences/';
 
   constructor(
     private _http: HttpClient,
@@ -26,24 +25,18 @@ export class ExperienceService{
   }
 
   // Store
-  public createExperience(experience: Experience): any {
-    this._http.post(this.storeURL, experience).subscribe(data => {
-      return data;
-    });
+  public createExperience(experience: Experience): Observable<any> {
+    return this._http.post(this.storeURL, experience);
   }
 
   // Update
-  public updateExperience(experience: Experience): any {
-    this._http.put(this.updateURL, experience).subscribe(data => {
-      return data;
-    });
+  public updateExperience(experience: Experience): Observable<any> {
+    return this._http.put(this.updateURL, experience);
   }
 
   // Delete
-  public deleteExperience(i: number): any {
-    this._http.delete(this.deleteURL + i).subscribe(data => {
-      console.log(data);
-    });
+  public deleteExperience(i: number): Observable<any> {
+    return this._http.delete(this.deleteURL + i);
   }
 }
 

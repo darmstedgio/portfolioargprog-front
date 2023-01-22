@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../service/token.service';
 import { AboutMe } from 'src/app/core/models/AboutMe';
 import { AboutMeService } from '../service/aboutme.service';
+import { ComunicationsService } from '../service/comunications.service';
 
 @Component({
   selector: 'app-aboutme',
@@ -36,7 +37,8 @@ export class AboutmeComponent implements OnInit {
   constructor(
     private _tecnologiesService: TecnologiesService,
     private _aboutMesService: AboutMeService,
-    private _tokenService: TokenService
+    private _tokenService: TokenService,
+    private _comunicationService: ComunicationsService
   )
   {
     this.name = null;
@@ -46,7 +48,9 @@ export class AboutmeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this._comunicationService.dispatchReload.subscribe(() => {
+      this.loadTecnologies();
+    })
     this.editing = false;
 
     if(this._tokenService.getToken()){
@@ -58,21 +62,19 @@ export class AboutmeComponent implements OnInit {
     this.loadAboutMe();
   }
 
-  loadTecnologies(){
-    this.tecnologies = false;
-    this._tecnologiesService.getTecnologies().subscribe(
-      result => {
-        this.tecnologies = result;
-      }
-    );
+  public loadTecnologies(){
+    this.tecnologies = [];
+    this._tecnologiesService.getTecnologies().subscribe({
+      next: (data) => { this.tecnologies = data; },
+      error: (data) => { console.error(data); },
+    });
   }
 
   loadAboutMe(){
-    this._aboutMesService.getAboutMe().subscribe(
-      result => {
-        this.aboutme = result;
-      }
-    );
+    this._aboutMesService.getAboutMe().subscribe({
+      next: (data) => { this.aboutme = data; },
+      error: (data) => { console.error(data); },
+    });
   }
 
   openModal(i: number){
@@ -99,6 +101,10 @@ export class AboutmeComponent implements OnInit {
     };
 
     this._aboutMesService.updateAboutMe(this.aboutme);
+    this._aboutMesService.updateAboutMe(this.aboutme).subscribe({ //Update
+        next: (data) => { this.aboutme = data; },
+        error: (data) => { console.error(data); },
+    });
   }
 
   clearForm(){
