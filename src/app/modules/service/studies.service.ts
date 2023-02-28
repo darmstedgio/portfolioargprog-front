@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class StudiesService{
-  public URL: string = 'http://portfolioweb.com.devel/api/';
+  public URL: string = 'https://www.darmsportfolio.xyz/api/';
 
   public indexURL: string = this.URL + 'index/studies';
   public storeURL: string = this.URL + 'store/studies';

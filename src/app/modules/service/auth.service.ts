@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class AuthService{
-  authURL = 'http://portfolioweb.com.devel/api/auth/';
+  authURL = 'https://www.darmsportfolio.xyz/api/auth/';
 
   constructor(private _http: HttpClient){ }
 

@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class TecnologiesService{
-  public URL: string = 'http://portfolioweb.com.devel/api/';
+  public URL: string = 'https://www.darmsportfolio.xyz/api/';
 
   public indexURL: string = this.URL + 'index/tecnologies';
   public storeURL: string = this.URL + 'store/tecnologies';
